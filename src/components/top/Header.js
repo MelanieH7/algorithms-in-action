@@ -17,6 +17,11 @@ function Header({ onSetting }) {
     history.push('/about');
   };
 
+  // goes to menu page
+  const handleMenuClick = () => {
+    history.push('/menu');
+  }
+
 
   return (
     <div className="header">
@@ -26,6 +31,9 @@ function Header({ onSetting }) {
       </button>
 
       <div className="navButton">
+        <button type="button" onClick={handleMenuClick}>
+          Menu
+        </button>
         <button type="button" onClick={handleAboutClick}>
           About
         </button>
