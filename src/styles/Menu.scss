@@ -1,1 +1,14 @@
 @import './global.scss';
+
+.title {
+    color: #2289ff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 2.5em;
+    max-width: 500px;
+    // padding: 80px 48px 70px; commented this out because it broke the about page for some reason
+}
+
+.searchBar {
+    padding-left: 80px;
+}
