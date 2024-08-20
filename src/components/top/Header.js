@@ -9,18 +9,13 @@ function Header({ onSetting }) {
 
   // goes back to main page
   const handleLogoClick = () => {
-    history.push('/');
+    history.push('/menu');
   };
 
   // goes to about page
   const handleAboutClick = () => {
     history.push('/about');
   };
-
-  // goes to menu page
-  const handleMenuClick = () => {
-    history.push('/menu');
-  }
 
 
   return (
@@ -31,9 +26,6 @@ function Header({ onSetting }) {
       </button>
 
       <div className="navButton">
-        <button type="button" onClick={handleMenuClick}>
-          Menu
-        </button>
         <button type="button" onClick={handleAboutClick}>
           About
         </button>
