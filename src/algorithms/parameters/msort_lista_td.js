@@ -1,3 +1,5 @@
+// Adapted from Quicksort - could rename a few things
+
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -6,17 +8,15 @@ import { withStyles } from '@mui/styles';
 import { genRandNumList, quicksortPerfectPivotArray } from './helpers/ParamHelper';
 import ListParam from './helpers/ListParam';
 import '../../styles/Param.scss';
-import { parseParam , useUrlParams } from './helpers/urlHelpers'; // Assume these functions are exported from a helper file
-import algorithms from '../../algorithms';
 
 const DEFAULT_ARRAY_GENERATOR = genRandNumList.bind(null, 12, 1, 50);
 const DEFAULT_ARR = DEFAULT_ARRAY_GENERATOR();
-const QUICK_SORT = 'Quick Sort';
-const QUICK_SORT_EXAMPLE = 'Please follow the example provided: 0,1,2,3,4';
+const MERGE_SORT = 'Merge Sort (lists)';
+const MERGE_SORT_EXAMPLE = 'Please follow the example provided: 0,1,2,3,4';
 const UNCHECKED = {
   random: false,
   sortedAsc: false,
-  bestCase: false,
+  // bestCase: false,
   sortedDesc: false
 };
 
@@ -31,24 +31,20 @@ const BlueRadio = withStyles({
   // eslint-disable-next-line react/jsx-props-no-spreading
 })((props) => <Radio {...props} />)
 
-function QuicksortParam() {
-  const { alg, mode, param } = useUrlParams();
-  const {list, value, xyCoords, edgeWeights, start, end, string, pattern, union} = parseParam(param);
+function MergesortParam() {
   const [message, setMessage] = useState(null)
-  const [array, setArray] = useState(list)
+  const [array, setArray] = useState(DEFAULT_ARR)
   const [QSCase, setQSCase] = useState({
     random: true,
     sortedAsc: false,
-    bestCase: false,
+    // bestCase: false,
     sortedDesc: false
   });
 
-  console.log("Component State:", { alg, mode, list });  // Final check before rendering
-  if (!alg || !mode || !(alg in algorithms && mode in algorithms[alg].pseudocode)) {
-      return <div>Invalid algorithm or mode specified</div>;
-  }
+    
 
-  // function for choosing the type of pivot (median of three)
+// XXX best case definitely not needed; could skip choice of cases
+  // function for choosing the type of input
   const handleChange = (e) => {
     switch (e.target.name) {
       case 'sortedAsc':
@@ -82,11 +78,12 @@ function QuicksortParam() {
     [QSCase],
   );
 
+  // XXX some QSCase.bestCase etc junk best cleaned up
   return (
     <>
       <div className="form">
         <ListParam
-          name="quickSort"
+          name="msort_lista_td"
           buttonName="Reset"
           mode="sort"
           formClassName="formLeft"
@@ -113,8 +110,8 @@ function QuicksortParam() {
               }
             })()
           }
-          ALGORITHM_NAME={QUICK_SORT}
-          EXAMPLE={QUICK_SORT_EXAMPLE}
+          ALGORITHM_NAME={MERGE_SORT}
+          EXAMPLE={MERGE_SORT_EXAMPLE}
           setMessage={setMessage}
         />
       </div>
@@ -153,22 +150,10 @@ function QuicksortParam() {
         label="Sorted (descending)"
         className="checkbox"
       />
-      {/* create a checkbox for Median of Three */}
-      <FormControlLabel
-        control={
-          <BlueRadio
-            checked={QSCase.bestCase}
-            onChange={handleChange}
-            name="bestCase"
-          />
-        }
-        label="Ideal"
-        className="checkbox"
-      />
       {/* render success/error message */}
       {message}
     </>
   )
 }
 
-export default QuicksortParam
+export default MergesortParam
