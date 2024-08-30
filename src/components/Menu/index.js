@@ -8,8 +8,8 @@ const Menu = () => {
     return (
         <div className="background">
             <div id="header"><Header></Header></div>
-            <div class="title"> Algorithms in Action</div>
-            <div class="searchBar"><Search></Search></div>
+            <div className="title"> Algorithms in Action</div>
+            <div className="searchBar"><Search></Search></div>
         </div>
     );
 };
