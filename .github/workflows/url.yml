@@ -16,7 +16,7 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
         with:
-            persist-credentials: false
+          persist-credentials: false
 
       - name: Install dependencies
         run: |
@@ -24,5 +24,4 @@ jobs:
           npm install jest @testing-library/react-hooks supertest --save-dev
 
       - name: Run tests 🔧
-        run: 
-          npm test-url
+        run: npm run test-url
