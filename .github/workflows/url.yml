@@ -1,4 +1,4 @@
-name: URL Navigation and Parameter Input CI
+name: URL Parameter Parsing 🔗
 
 on:
   push:
@@ -21,9 +21,8 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npm install jest supertest --save-dev
+          npm install jest @testing-library/react-hooks supertest --save-dev
 
       - name: Run tests 🔧
-        run: |
-          npm start
+        run: 
           npm test-url
